@@ -9,21 +9,34 @@ body {
 	color: white;
 }
 
-@media only screen and (max-width: 600px) {
-	body {
-		margin: 0 1%;
-	}
-}
-
 .add {
-	width: 100%;
+	width: 60%;
 	height: 50px;
 	margin-bottom: 50px;
 	display: flex;
 	flex-direction: row;
+	position: fixed;
+	top: 0%;
+	left: 20%;
+	right: 20%;
+}
+
+@media only screen and (max-width: 600px) {
+	body {
+		margin: 0 1%;
+	}
+
+	.add {
+		width: 98%;
+		position: fixed;
+		top: 0%;
+		left: 1%;
+		right: 1%;
+	}
 }
 
 .todolist {
+	margin-top: 100px;
 	margin-bottom: 25px;
 	display: flex;
 	flex-direction: column;
@@ -75,7 +88,7 @@ button {
 
 div.add input {
 	width: 80%;
-	background-color: rgba(0,170,170, 0.7);;
+	background-color: rgba(0,170,170, 1);;
 	border: none;
 	padding: 0 0 0 10px;
 }

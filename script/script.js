@@ -5,10 +5,10 @@ let donelist = document.querySelector('.donelist ul');
 let msg = document.querySelectorAll('.msg');
 
 if(localStorage.todo) {
-	let array = localStorage.done.split(' ');
+	let array = localStorage.todo.split(' ');
 
 	for(let i=1; i<array.length; i++){
-		createRowInDonelist(array[i]);
+		createRow(array[i]);
 	}
 
 	toggleMessage();

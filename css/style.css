@@ -83,7 +83,11 @@ button {
 	padding: 5px 5px;
 	display: inherit;
 	justify-content: space-between;
-	background-color: rgba(0,170,170, 0.7);
+	background-color: rgba(150, 50, 100, 1);
+}
+
+.donelist .row {
+	background-color: rgba(0, 170, 0, 0.7);
 }
 
 div.add input {

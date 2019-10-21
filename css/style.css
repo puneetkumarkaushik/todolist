@@ -60,7 +60,7 @@ button {
 	border: none;
 	color: white;
 	cursor: pointer;
-	background-color: rgba(0,170,170, 0.2);
+	background-color: rgba(0,170,170, 1);
 }
 
 .actionimg {
@@ -95,7 +95,7 @@ div.add input {
 
 .add button {
 	width: 20%;
-	background-color: rgba(250,0,0, 1);;
+	background-color: rgba(250,0,0, 1);
 }
 
 
@@ -117,4 +117,16 @@ div.add input {
 	padding: 0;
 }
 
+.alert {
+	display: none;
+	background-color: orange;
+	position: fixed;
+	width: 60%;
+	top: 20%;
+	left: 20%;
+	right: 20%;
+}
 
+.alert button {
+	margin: 5px 10px;
+}

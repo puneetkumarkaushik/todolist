@@ -3,6 +3,7 @@ let add = document.querySelector('.add button');
 let todolist = document.querySelector('.todolist ul');
 let donelist = document.querySelector('.donelist ul');
 let msg = document.querySelectorAll('.msg');
+let alert = document.querySelector('.alert');
 
 if(localStorage.todo) {
 	let array = localStorage.todo.split(' ');
@@ -33,7 +34,19 @@ if(localStorage.done) {
 input.addEventListener('change', addItemOnEnter);
 add.addEventListener('click', addItem);
 todolist.addEventListener('click', doAction);
-
+alert.addEventListener('click', function(event){
+	if(event.target.nodeName === 'BUTTON'){
+		if(event.target.title === 'clear'){
+			clearList();
+			while (donelist.hasChildNodes()) {  
+  				donelist.removeChild(donelist.firstChild);
+			}
+		}
+		toggleMessage();
+		document.querySelector('.alert').style.display = 'none';	
+		input.disabled = '';
+	}
+});
 
 function addItemOnEnter(event){
 	if(input.value.length > 0){
@@ -137,6 +150,8 @@ function toggleMessage(){
 	else {
 		msg[1].style.display = 'block';
 	}
+
+	showAlert();
 }
 
 function addInToDo(item){
@@ -149,6 +164,16 @@ function addInDone(item){
 
 function removefromToDo(item){
 	localStorage.todo = localStorage.todo.replace(` ${item}`, '');
+}
 
-	console.log(localStorage.todo.replace(` ${item}`, ''));
+function showAlert(){
+	if(localStorage.todo.length === 0 && localStorage.done.length > 0){
+		document.querySelector('.alert').style.display = 'block';
+		input.disabled = 'true';
+	}
+}
+
+function clearList(){
+	localStorage.todo = "";
+	localStorage.done = "";
 }

@@ -4,6 +4,32 @@ let todolist = document.querySelector('.todolist ul');
 let donelist = document.querySelector('.donelist ul');
 let msg = document.querySelectorAll('.msg');
 
+if(localStorage.todo) {
+	let array = localStorage.done.split(' ');
+
+	for(let i=1; i<array.length; i++){
+		createRowInDonelist(array[i]);
+	}
+
+	toggleMessage();
+}else {
+	localStorage.setItem('todo', '');
+}
+
+if(localStorage.done) {
+	let array = localStorage.done.split(' ');
+
+	for(let i=1; i<array.length; i++){
+		createRowInDonelist(array[i]);
+	}
+
+	toggleMessage();
+}else {
+	localStorage.setItem('done', '');
+}
+
+
+
 input.addEventListener('change', addItemOnEnter);
 add.addEventListener('click', addItem);
 todolist.addEventListener('click', doAction);
@@ -11,8 +37,10 @@ todolist.addEventListener('click', doAction);
 
 function addItemOnEnter(event){
 	if(input.value.length > 0){
-		createRow();
+		createRow(input.value);
 	}
+
+	addInToDo(input.value);
 
 	input.value = '';
 
@@ -25,6 +53,8 @@ function addItem(){
 		createRow();
 	}
 
+	addInToDo(input.value);
+
 	input.value = '';
 
 	toggleMessage();
@@ -32,10 +62,12 @@ function addItem(){
 
 function doAction(event){
 	if(event.target.nodeName === 'IMG' && event.target.title === 'Delete'){
+		removefromToDo(event.target.parentElement.parentElement.children[0].innerHTML);
 		event.target.parentElement.parentElement.remove();
 	}
 	else if(event.target.nodeName === 'IMG' && event.target.title === 'Done'){
-		console.log(event.target);
+		removefromToDo(event.target.parentElement.parentElement.children[0].innerHTML);
+		addInDone(event.target.parentElement.parentElement.children[0].innerHTML);
 		createRowInDonelist(event.target.parentElement.parentElement.children[0].innerHTML);
 		event.target.parentElement.parentElement.remove();
 	}
@@ -43,7 +75,7 @@ function doAction(event){
 	toggleMessage();
 }
 
-function createRow(){
+function createRow(element){
 	let li = document.createElement('li');
 	li.setAttribute('class', 'row');
 
@@ -52,7 +84,7 @@ function createRow(){
 	let deleteimg = document.createElement('img');
 	let doneimg = document.createElement('img');
 
-	item.innerHTML = input.value;
+	item.innerHTML = element;
 
 	deleteimg.setAttribute('class', 'actionimg');
 	deleteimg.setAttribute('src', './img/delete.png');
@@ -105,4 +137,18 @@ function toggleMessage(){
 	else {
 		msg[1].style.display = 'block';
 	}
+}
+
+function addInToDo(item){
+	localStorage.todo = localStorage.todo.concat(` ${item}`);
+}
+
+function addInDone(item){
+	localStorage.done = localStorage.done.concat(` ${item}`);
+}
+
+function removefromToDo(item){
+	localStorage.todo = localStorage.todo.replace(` ${item}`, '');
+
+	console.log(localStorage.todo.replace(` ${item}`, ''));
 }

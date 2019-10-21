@@ -31,7 +31,7 @@ if(localStorage.done) {
 
 
 
-input.addEventListener('change', addItemOnEnter);
+input.addEventListener('keydown', addItemOnEnter);
 add.addEventListener('click', addItem);
 todolist.addEventListener('click', doAction);
 alert.addEventListener('click', function(event){
@@ -49,24 +49,21 @@ alert.addEventListener('click', function(event){
 });
 
 function addItemOnEnter(event){
-	if(input.value.length > 0){
+	if(input.value.length > 0 && event.keyCode === 13){
 		createRow(input.value);
+		addInToDo(input.value);
+		input.value = '';
 	}
-
-	addInToDo(input.value);
-
-	input.value = '';
-
 	toggleMessage();
 }
 
 
 function addItem(){
 	if(input.value.length > 0){
-		createRow();
+		createRow(input.value);
 	}
 
-	addInToDo(input.value);
+	addInToDo(input.value.trim());
 
 	input.value = '';
 

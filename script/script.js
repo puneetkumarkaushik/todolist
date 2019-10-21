@@ -49,23 +49,21 @@ alert.addEventListener('click', function(event){
 });
 
 function addItemOnEnter(event){
-	if(input.value.length > 0 && event.keyCode === 13){
+	if(event.keyCode === 13 && input.value.length > 0){
 		createRow(input.value);
 		addInToDo(input.value);
 		input.value = '';
+		toggleMessage();
 	}
-	toggleMessage();
 }
 
 
 function addItem(){
 	if(input.value.length > 0){
 		createRow(input.value);
+		addInToDo(input.value.trim());
+		input.value = '';
 	}
-
-	addInToDo(input.value.trim());
-
-	input.value = '';
 
 	toggleMessage();
 }

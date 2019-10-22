@@ -6,7 +6,7 @@ let msg = document.querySelectorAll('.msg');
 let alert = document.querySelector('.alert');
 
 if(localStorage.todo) {
-	let array = localStorage.todo.split(' ');
+	let array = localStorage.todo.split(',');
 
 	for(let i=1; i<array.length; i++){
 		createRow(array[i]);
@@ -18,7 +18,7 @@ if(localStorage.todo) {
 }
 
 if(localStorage.done) {
-	let array = localStorage.done.split(' ');
+	let array = localStorage.done.split(',');
 
 	for(let i=1; i<array.length; i++){
 		createRowInDonelist(array[i]);
@@ -150,15 +150,15 @@ function toggleMessage(){
 }
 
 function addInToDo(item){
-	localStorage.todo = localStorage.todo.concat(` ${item}`);
+	localStorage.todo = localStorage.todo.concat(`,${item}`);
 }
 
 function addInDone(item){
-	localStorage.done = localStorage.done.concat(` ${item}`);
+	localStorage.done = localStorage.done.concat(`,${item}`);
 }
 
 function removefromToDo(item){
-	localStorage.todo = localStorage.todo.replace(` ${item}`, '');
+	localStorage.todo = localStorage.todo.replace(`,${item}`, '');
 }
 
 function showAlert(){
